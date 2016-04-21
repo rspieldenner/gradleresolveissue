@@ -1,0 +1,13 @@
+subprojects {
+    apply plugin: 'java'
+    repositories { jcenter() }
+
+    project.gradle.projectsEvaluated {
+        configurations.all { Configuration config ->
+            resolutionStrategy {  ->
+                def copy = config.copyRecursive()
+                if (copy.resolvedConfiguration.hasError()) println 'error'
+            }
+        }
+    }
+}
